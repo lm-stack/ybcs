@@ -1,19 +1,47 @@
 {
-  "url": "https://example.com",
-  "name": "Nom du site",
+  "url": "https://yb-cs.ch",
+  "name": "YB Conseils & Solutions Sàrl",
   "lang": "fr",
-  "description": "Description de votre site en une ou deux phrases. Personnalisez ce texte pour décrire votre activité et attirer les visiteurs (150-160 caractères).",
+  "description": "Votre partenaire en gouvernance des données. Nous intervenons là où les exigences juridiques, organisationnelles et techniques se rencontrent pour façonner des solutions globales, pragmatiques et innovantes.",
   "ogImage": "/og-image.jpg",
-  "logoText": "Blueprint",
-  "logoIcon": "ph-blueprint",
-  "copyright": "Blueprint",
-  "webhookUrl": "https://n8n.example.com/webhook/contact",
+  "logoText": "YB Conseils & Solutions",
+  "logoIcon": "ph-shield-check",
+  "copyright": "YB Conseils & Solutions Sàrl",
+  "webhookUrl": "",
   "webhookToken": "",
   "turnstileSiteKey": "0x0000000000000000000000",
   "searchUrl": "/recherche/",
+  "fontsPreload": [
+    "/fonts/manrope-v20-latin-700.woff2",
+    "/fonts/dm-sans-v17-latin-regular.woff2"
+  ],
+  "localBusiness": {
+    "type": "LocalBusiness",
+    "address": {
+      "street": "Rue de Battentin 21",
+      "locality": "Bulle",
+      "postalCode": "1630",
+      "country": "CH"
+    },
+    "geo": {
+      "lat": 46.6198,
+      "lng": 7.0572
+    }
+  },
   "nav": [
     { "url": "/", "label": "Accueil", "icon": "ph-house" },
-    { "url": "/a-propos/", "label": "À propos", "icon": "ph-users" },
+    { "url": "/solutions/", "label": "Solutions", "icon": "ph-briefcase" },
+    {
+      "label": "Formations",
+      "icon": "ph-graduation-cap",
+      "children": [
+        { "url": "/formations/workshops/", "label": "Workshops" },
+        { "url": "/formations/evenements/", "label": "Événements" },
+        { "url": "/formations/formations-pecb/", "label": "Formations certifiantes" }
+      ]
+    },
+    { "url": "/equipe/", "label": "Équipe", "icon": "ph-users-three" },
+    { "url": "/publications/", "label": "Publications", "icon": "ph-article" },
     { "url": "/contact/", "label": "Contact", "icon": "ph-envelope-simple" }
   ]
 }

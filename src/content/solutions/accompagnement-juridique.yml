@@ -1,0 +1,18 @@
+seo:
+  title: "Accompagnement juridique"
+  description: "Nous sommes à vos côtés pour traduire les exigences juridiques dans la pratique sans qu'elles ne constituent un frein à votre activité."
+title: "Accompagnement juridique"
+number: "01"
+icon: "ph-scales"
+shortDescription: "Nous sommes à vos côtés pour traduire les exigences juridiques dans la pratique sans qu'elles ne constituent un frein à votre activité."
+longDescription: "Les exigences juridiques se multiplient et deviennent de plus en plus complexes. Nous sommes à vos côtés pour les traduire dans la pratique sans qu'elles ne constituent un frein à votre activité."
+services:
+  - title: "Veille réglementaire"
+    description: "Suivi des évolutions légales et réglementaires impactant votre organisation."
+    icon: "ph-magnifying-glass"
+  - title: "Mise en conformité"
+    description: "Accompagnement dans l'implémentation des exigences légales applicables."
+    icon: "ph-check-circle"
+  - title: "Conseil stratégique"
+    description: "Orientation et recommandations adaptées à votre contexte opérationnel."
+    icon: "ph-lightbulb"

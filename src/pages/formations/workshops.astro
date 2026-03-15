@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import Grid from '../../components/Grid.astro';
+import Card from '../../components/Card.astro';
+import { getCollection } from 'astro:content';
+
+const formations = await getCollection('formations');
+const workshops = formations.filter((f) => f.data.type === 'workshop');
+---
+
+<Base
+  seo={{ title: 'Workshops', description: 'Ateliers concrets et mise en pratique pour maîtriser la gouvernance des données.' }}
+  breadcrumb="Workshops"
+  headerDark
+>
+  <Hero
+    title="Workshops"
+    description="Ateliers concrets et mise en pratique pour maîtriser la gouvernance des données."
+    size="compact"
+  />
+
+  <Section>
+    {workshops.length > 0 ? (
+      <Grid cols="2" gap="l">
+        {workshops.map((formation) => (
+          <Card>
+            {formation.data.categories && formation.data.categories.length > 0 && (
+              <div class="flex flex-wrap gap-2xs mb-xs">
+                {formation.data.categories.map((cat: string) => (
+                  <span class="bg-bg-light text-primary text-text-xs px-xs py-3xs rounded-l font-medium">{cat}</span>
+                ))}
+              </div>
+            )}
+            <h3 class="text-text-l font-bold font-secondary mb-xs">{formation.data.title}</h3>
+            <p class="text-text text-text-s">{formation.data.description}</p>
+          </Card>
+        ))}
+      </Grid>
+    ) : (
+      <div class="text-center">
+        <p class="text-text text-text-l">Aucun workshop disponible pour le moment.</p>
+      </div>
+    )}
+  </Section>
+
+</Base>

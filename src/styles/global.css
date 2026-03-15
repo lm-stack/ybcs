@@ -6,76 +6,214 @@
 @layer base {
   ul, ol { list-style: none; }
 
-  /* Body offset for fixed header */
+  /* Body — WHITE background, dark text (matching WordPress) */
   body {
     padding-top: 60px;
-    font-family: var(--font-family-primary, system-ui, -apple-system, sans-serif);
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    background-color: #FFFFFF;
+    color: #4F5A7A;
+    font-weight: 300;
+    font-size: clamp(1.13rem, 0.37vi + 1.05rem, 1.35rem);
+    line-height: 1.6;
   }
 
   /* Link defaults */
   a {
-    color: var(--color-primary, #235265);
+    color: #0DA4DA;
     text-decoration: none;
     transition: color 0.3s ease;
   }
-  a:hover { color: var(--color-secondary, #F0816B); }
+  a:hover { color: #222B44; }
 
-  /* Heading defaults */
-  h1, h2, h3, h4 {
-    color: var(--color-black, #000000);
+  /* Heading defaults — dark secondary color, Manrope 800 */
+  h1, h2, h3, h4, h5, h6 {
+    color: #222B44;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    font-weight: 800;
   }
-  h1 { @apply text-h1; }
+  h1 { @apply text-h1; font-weight: 700; }
   h2 { @apply text-h2; }
   h3 { @apply text-h3; }
   h4 { @apply text-h4; }
 }
 
-/* Pagefind UI overrides */
-.search__inner {
-  --pagefind-ui-scale: 1;
-  --pagefind-ui-primary: var(--color-primary, #235265);
-  --pagefind-ui-text: var(--color-black, #000000);
-  --pagefind-ui-background: #FFFFFF;
-  --pagefind-ui-border: var(--color-border, #F5F8F9);
-  --pagefind-ui-border-width: 1px;
-  --pagefind-ui-border-radius: 12px;
-  --pagefind-ui-font: var(--font-family-primary, system-ui, -apple-system, sans-serif);
+/* ==========================================================================
+   Dark section utility — for hero, CTA, footer
+   Overrides headings and text colors when inside a dark section
+   ========================================================================== */
+.section-dark {
+  background-color: #071333;
+  color: #BAC4D6;
+}
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4,
+.section-dark h5,
+.section-dark h6 {
+  color: #FFFFFF;
+}
+.section-dark a {
+  color: #0DA4DA;
+}
+.section-dark a:hover {
+  color: #FFFFFF;
 }
 
-/* Form feedback */
-.form-feedback {
-  margin-top: var(--spacing-s, 16px);
-  padding: var(--spacing-xs, 12px) var(--spacing-s, 16px);
+/* ==========================================================================
+   Glassmorphism utilities (for elements on dark backgrounds)
+   ========================================================================== */
+.glass {
+  background: linear-gradient(240deg, rgba(245, 245, 245, 0.00) -45.65%, rgba(104, 104, 104, 0.30) 64.76%);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   Halo / Glow effects (decorative background blobs — dark sections only)
+   ========================================================================== */
+.halo {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(200px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.halo--blue {
+  background: rgba(24, 100, 147, 0.9);
+}
+
+.halo--accent {
+  background: rgba(178, 128, 100, 0.4);
+}
+
+/* ==========================================================================
+   Hero gradient text (matching WordPress .color--gradient)
+   ========================================================================== */
+.gradient-text {
+  background: linear-gradient(180deg, #F5F5F5 0%, #8F8F8F 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gradient-text .text-white-word {
+  -webkit-text-fill-color: #FFFFFF;
+}
+
+/* ==========================================================================
+   Card styles (white cards with border — matching WordPress)
+   ========================================================================== */
+.card {
+  background: #FFFFFF;
+  border: 1px solid #BAC4D6;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.card:hover {
+  border-color: #0DA4DA;
+  box-shadow: 0 8px 24px rgba(186, 196, 214, 0.25);
+}
+
+/* Card on dark background (glassmorphism) */
+.card-dark {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.card-dark:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================================================================
+   Tag/Highlight pills (glassmorphism — for dark sections)
+   Matching WordPress .tag--highlight exactly
+   ========================================================================== */
+.tag-highlight {
+  width: auto;
+  position: relative;
+  padding: 8px 16px;
   border-radius: 12px;
-  font-size: var(--font-size-text-s, 0.875rem);
+  background: linear-gradient(240deg, rgba(245, 245, 245, 0.00) -45.65%, rgba(104, 104, 104, 0.30) 64.76%);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+.tag-highlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(60deg, #9499A3, #4F6781);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Pagefind UI overrides (light theme — matching white background)
+   ========================================================================== */
+.search__inner {
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: #0DA4DA;
+  --pagefind-ui-text: #4F5A7A;
+  --pagefind-ui-background: #FFFFFF;
+  --pagefind-ui-border: #DBE3F2;
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 12px;
+  --pagefind-ui-font: 'DM Sans', system-ui, sans-serif;
+}
+
+/* ==========================================================================
+   Form feedback
+   ========================================================================== */
+.form-feedback {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.875rem;
 }
 .form-feedback--success {
-  background-color: var(--color-success-bg, #E8F5E9);
-  color: var(--color-success, #2E7D32);
-  border: 1px solid var(--color-success-border, #A5D6A7);
+  background-color: #E8F5E9;
+  color: #2E7D32;
+  border: 1px solid #A5D6A7;
 }
 .form-feedback--error {
-  background-color: var(--color-error-bg, #FBE9E7);
-  color: var(--color-error, #C62828);
-  border: 1px solid var(--color-error-border, #EF9A9A);
+  background-color: #FBE9E7;
+  color: #C62828;
+  border: 1px solid #EF9A9A;
 }
 .form-input--error,
 .form-input--error:focus {
-  border-color: var(--color-error, #C62828) !important;
+  border-color: #C62828 !important;
 }
 .form-error {
   display: block;
-  margin-top: var(--spacing-2xs, 8px);
-  font-size: var(--font-size-text-xs, 0.75rem);
-  color: var(--color-error, #C62828);
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #C62828;
   min-height: 0;
 }
 
-/* Header scrolled state */
+/* ==========================================================================
+   Header scrolled state (white with shadow — matching WordPress)
+   ========================================================================== */
 #header.scrolled {
-  box-shadow: var(--shadow-card, 0 4px 12px #EEF1F3);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(186, 196, 214, 0.15);
   background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Desktop dropdown open state */

@@ -21,14 +21,14 @@ const {
   class: className,
 } = Astro.props;
 
-const base = 'inline-flex items-center justify-center py-xs px-m text-text-s font-medium rounded cursor-pointer gap-2xs transition-all duration-300 hover:-translate-y-0.5 no-underline';
+const base = 'inline-flex items-center justify-center py-xs px-s text-[16px] font-semibold font-secondary rounded-o cursor-pointer gap-2xs transition-all duration-300 hover:-translate-y-0.5 no-underline';
 
 const variants: Record<string, string> = {
-  primary: 'bg-primary text-white hover:bg-black hover:text-white',
-  secondary: 'bg-secondary text-white',
+  primary: 'bg-primary text-white border border-primary hover:bg-primary-dark hover:border-primary-dark',
+  secondary: 'bg-secondary text-white border border-secondary hover:bg-secondary/80',
   outline: 'bg-transparent border border-primary text-primary hover:bg-primary hover:text-white',
-  'outline-white': 'bg-transparent border border-white text-white hover:bg-white hover:text-black',
-  dark: 'bg-black text-white hover:bg-text hover:text-white',
+  'outline-white': 'bg-transparent border border-white/30 text-white hover:bg-white/10',
+  dark: 'bg-secondary text-white border border-secondary hover:bg-secondary/80',
 };
 
 const classes = [
@@ -41,12 +41,12 @@ const classes = [
 
 {href ? (
   <a href={href} class={classes}>
-    {icon && <Icon name={`ph:${icon}`} class="w-4 h-4" aria-hidden="true" />}
     <slot />
+    {icon && <Icon name={`ph:${icon}`} class="w-4 h-4" aria-hidden="true" />}
   </a>
 ) : (
   <button type={type} disabled={disabled} class={classes}>
-    {icon && <Icon name={`ph:${icon}`} class="w-4 h-4" aria-hidden="true" />}
     <slot />
+    {icon && <Icon name={`ph:${icon}`} class="w-4 h-4" aria-hidden="true" />}
   </button>
 )}

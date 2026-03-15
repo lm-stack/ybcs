@@ -1,135 +1,187 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { toIconName } from '../lib/data';
+import Button from './Button.astro';
 import type { SiteData } from '../lib/data';
 
 interface Props {
   site: SiteData;
-  footerDescription?: string;
 }
 
-const { site, footerDescription = '' } = Astro.props;
+const { site } = Astro.props;
 
 const currentYear = new Date().getFullYear();
 
 const hasSocial = site.social && site.social.length > 0;
+const linkedIn = site.social?.find((s) => s.label.toLowerCase().includes('linkedin'));
 
-// Flatten nav items (include children) for footer links
-const footerLinks = site.nav.flatMap((item) => {
-  if (item.children && item.children.length > 0) {
-    return item.children;
-  }
-  return [item];
-});
+const solutionsLinks = [
+  { url: '/solutions/accompagnement-juridique/', label: 'Accompagnement juridique' },
+  { url: '/solutions/protection-donnees/', label: 'Protection des données' },
+  { url: '/solutions/gestion-risques/', label: 'Gestion des risques' },
+  { url: '/solutions/securite-information/', label: 'Sécurité de l\'information' },
+  { url: '/solutions/digitalisation/', label: 'Digitalisation' },
+];
+
+const usefulLinks = [
+  { url: '/formations/', label: 'Formations' },
+  { url: '/formations/workshops/', label: 'Workshops' },
+  { url: '/formations/evenements/', label: 'Événements' },
+  { url: '/publications/', label: 'Publications' },
+];
+
+const aboutLinks = [
+  { url: '/equipe/', label: 'Équipe' },
+  { url: '/contact/', label: 'Contact' },
+  { url: '/equipe/#valeurs', label: 'Valeurs' },
+  { url: '/certifications/', label: 'Certifications' },
+];
 ---
 
 <footer
-  class="bg-primary text-white py-3xl"
+  class="pb-[24px] px-0 md:px-[24px]"
   role="contentinfo"
   data-pagefind-ignore
 >
-  <div class="max-w-container mx-auto px-m">
-    {/* Grid */}
-    <div
-      class:list={[
-        'grid gap-xl',
-        hasSocial
-          ? 'grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr]'
-          : 'grid-cols-1 md:grid-cols-[2fr_1fr_1fr]',
-      ]}
-    >
-      {/* Column 1: Logo + description */}
-      <div>
-        <div class="flex items-center gap-xs mb-s">
-          <Icon name={toIconName(site.logoIcon)} class="w-8 h-8 text-white" aria-hidden="true" />
-          <span class="font-bold text-h4">
-            {site.logoText}
-          </span>
-        </div>
-        {footerDescription && (
-          <p class="text-text-s opacity-80 leading-relaxed">{footerDescription}</p>
-        )}
-      </div>
+  {/* Main container — rounded, dark bg, bg-data.svg, halos */}
+  <div class="footer-container relative overflow-hidden rounded-m bg-bg" style="background-image: url('/images/bg-data.svg'); background-size: contain; background-repeat: no-repeat;">
 
-      {/* Column 2: Navigation */}
-      <div>
-        <p class="font-bold mb-s text-text-s uppercase tracking-wider">Navigation</p>
-        <nav class="flex flex-col gap-2xs" aria-label="Navigation footer">
-          {footerLinks.map((link) => (
-            <a
-              href={link.url}
-              class="text-white opacity-80 hover:opacity-100 transition-opacity duration-300 text-text-s"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-      </div>
+    {/* Halo bleu */}
+    <div class="halo halo--blue w-[26.6%] aspect-square top-1/2 left-[20%] -translate-y-1/2" aria-hidden="true"></div>
 
-      {/* Column 3: Contact */}
-      <div>
-        <p class="font-bold mb-s text-text-s uppercase tracking-wider">Contact</p>
-        <div class="flex flex-col gap-xs">
-          <a
-            href={`mailto:${site.email}`}
-            class="text-white opacity-80 hover:opacity-100 transition-opacity duration-300 text-text-s inline-flex items-center gap-2xs"
-          >
-            <Icon name="ph:envelope-simple" class="w-4 h-4 shrink-0" aria-hidden="true" />
-            {site.email}
+    {/* ── CTA section ── */}
+    <div class="relative z-[1] flex flex-col md:flex-row items-center gap-xl px-xl md:px-4xl pt-4xl">
+      <div class="flex-1">
+        <h2 class="text-white mb-0">Vous avez une question ?</h2>
+        <p class="text-white mt-2xs">Notre équipe se tient à votre disposition</p>
+      </div>
+      <div class="flex flex-col items-end md:items-end gap-s shrink-0">
+        <Button href="/contact/" variant="primary" icon="arrow-right">
+          Contactez-nous
+        </Button>
+        <p class="text-[#BAC4D6] text-[12px] uppercase tracking-wider font-medium">
+          Réponse en 24 heures seulement
+        </p>
+      </div>
+    </div>
+
+    {/* ── Menu section ── */}
+    <div class="relative z-[1] flex flex-wrap justify-between gap-2xl px-xl md:px-4xl pt-3xl">
+
+      {/* Col 1: Logo + Tags */}
+      <div class="w-full md:w-[30%] flex flex-col justify-between gap-xl items-start">
+        <img src="/images/logo-ybcs-white.svg" alt={site.name} class="h-10 w-auto" loading="lazy" />
+        <div class="flex flex-col gap-m items-start">
+          {/* Tag: Email */}
+          <a href={`mailto:${site.email}`} class="tag-highlight text-white no-underline hover:text-primary transition-colors duration-300">
+            <Icon name="ph:envelope-simple" class="w-5 h-5 shrink-0 text-shadow" aria-hidden="true" />
+            <span>{site.email}</span>
           </a>
+          {/* Tag: Phone */}
           {site.phone && (
-            <a
-              href={`tel:${site.phone.replace(/\s/g, '')}`}
-              class="text-white opacity-80 hover:opacity-100 transition-opacity duration-300 text-text-s inline-flex items-center gap-2xs"
-            >
-              <Icon name="ph:phone" class="w-4 h-4 shrink-0" aria-hidden="true" />
-              {site.phone}
+            <a href={`tel:${site.phone.replace(/\s/g, '')}`} class="tag-highlight text-white no-underline hover:text-primary transition-colors duration-300">
+              <Icon name="ph:phone" class="w-5 h-5 shrink-0 text-shadow" aria-hidden="true" />
+              <span>{site.phone}</span>
             </a>
           )}
-          {site.address && (
-            <p class="text-white opacity-80 text-text-s inline-flex items-start gap-2xs">
-              <Icon name="ph:map-pin" class="w-4 h-4 shrink-0 mt-0.5" aria-hidden="true" />
-              <span>{site.address}</span>
-            </p>
-          )}
+          {/* Tag: Address Bulle */}
+          <a href="https://maps.app.goo.gl/gepXFpBTsqYxK2Rk6" target="_blank" rel="noopener noreferrer" class="tag-highlight text-white no-underline hover:text-primary transition-colors duration-300">
+            <Icon name="ph:map-pin-line" class="w-5 h-5 shrink-0 text-shadow" aria-hidden="true" />
+            <span>Rue de Battentin 21, 1630 Bulle</span>
+          </a>
+          {/* Tag: Address Sierre */}
+          <a href="https://maps.app.goo.gl/tWeXYiAfYJpZDrZg7" target="_blank" rel="noopener noreferrer" class="tag-highlight text-white no-underline hover:text-primary transition-colors duration-300">
+            <Icon name="ph:map-pin-line" class="w-5 h-5 shrink-0 text-shadow" aria-hidden="true" />
+            <span>Technopôle 10, 3960 Sierre</span>
+          </a>
         </div>
       </div>
 
-      {/* Column 4 (optional): Social links */}
-      {hasSocial && (
-        <div>
-          <p class="font-bold mb-s text-text-s uppercase tracking-wider">Suivez-nous</p>
-          <div class="flex flex-wrap gap-xs">
-            {site.social!.map((social) => (
-              <a
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-300 inline-flex items-center justify-center"
-                aria-label={social.label}
-              >
-                <Icon name={toIconName(social.icon)} class="w-5 h-5 text-white" aria-hidden="true" />
-              </a>
-            ))}
-          </div>
+      {/* Col 2: Solutions */}
+      <nav class="flex flex-col gap-l min-w-[120px]" aria-label="Solutions">
+        <p class="text-text-m font-medium uppercase tracking-wider text-white leading-[140%]">Solutions</p>
+        {solutionsLinks.map((link) => (
+          <a href={link.url} class="text-text-m text-white no-underline hover:text-primary transition-colors duration-300">
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      {/* Col 3: Liens utiles */}
+      <nav class="flex flex-col gap-l min-w-[120px]" aria-label="Liens utiles">
+        <p class="text-text-m font-medium uppercase tracking-wider text-white leading-[140%]">Liens utiles</p>
+        {usefulLinks.map((link) => (
+          <a href={link.url} class="text-text-m text-white no-underline hover:text-primary transition-colors duration-300">
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      {/* Col 4: À Propos (hidden on mobile) */}
+      <nav class="hidden md:flex flex-col gap-l min-w-[120px]" aria-label="À propos">
+        <p class="text-text-m font-medium uppercase tracking-wider text-white leading-[140%]">À Propos</p>
+        {aboutLinks.map((link) => (
+          <a href={link.url} class="text-text-m text-white no-underline hover:text-primary transition-colors duration-300">
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    {/* ── Crédits bar ── */}
+    <div class="relative z-[1] flex flex-col md:flex-row items-center justify-between border-t border-white/[0.24] mx-xl md:mx-4xl mt-4xl px-0 py-xl text-text-s text-[#BAC4D6]">
+      <div class="flex flex-col md:flex-row items-center gap-xs">
+        <span class="opacity-60">&copy; {currentYear} YB Conseils &amp; Solutions Sàrl</span>
+        <span class="hidden md:inline opacity-40">·</span>
+        <div class="flex items-center gap-xs">
+          <a href="/mentions-legales/" class="text-white no-underline hover:text-primary transition-colors duration-300">Mentions légales</a>
+          <span class="opacity-40">·</span>
+          <a href="/politique-confidentialite/" class="text-white no-underline hover:text-primary transition-colors duration-300">Confidentialité</a>
         </div>
+      </div>
+      {linkedIn && (
+        <a
+          href={linkedIn.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-white hover:text-primary transition-colors duration-300 mt-m md:mt-0"
+          aria-label="LinkedIn YBCS"
+        >
+          <Icon name={toIconName(linkedIn.icon)} class="w-6 h-6" aria-hidden="true" />
+        </a>
       )}
     </div>
 
-    {/* Bottom */}
-    <div class="border-t border-white/20 mt-xl pt-m text-text-xs opacity-60 text-center">
-      <p>&copy; {currentYear} {site.copyright}. Tous droits réservés.</p>
-      <p class="mt-3xs">
-        Fait avec passion par{' '}
-        <a
-          href="https://lausanne.marketing"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-white underline hover:opacity-80 transition-opacity duration-300"
-        >
-          Lausanne Marketing
-        </a>
-      </p>
-    </div>
   </div>
 </footer>
+
+<style>
+  .footer-container {
+    clip-path: inset(0 0 0 0);
+  }
+  .footer-container::before {
+    content: "";
+    position: absolute;
+    top: -280px;
+    left: -130px;
+    width: 511px;
+    aspect-ratio: 1;
+    background: #186493;
+    border-radius: 50%;
+    filter: blur(200px);
+    pointer-events: none;
+  }
+  .footer-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 20%;
+    width: 22.7%;
+    aspect-ratio: 1;
+    background: #B28064;
+    border-radius: 50%;
+    filter: blur(200px);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+</style>

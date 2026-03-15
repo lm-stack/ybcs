@@ -18,10 +18,11 @@ interface Props {
   breadcrumb?: string;
   isHome?: boolean;
   noindex?: boolean;
+  headerDark?: boolean;
 }
 
 const site = await getSiteData();
-const { seo, breadcrumb, isHome = false, noindex = false } = Astro.props;
+const { seo, breadcrumb, isHome = false, noindex = false, headerDark = false } = Astro.props;
 const currentUrl = Astro.url.pathname;
 const homeData = await getEntry('pages', 'home');
 const footerDescription = (homeData?.data as HomePageData)?.footer?.description || '';
@@ -69,13 +70,13 @@ const footerDescription = (homeData?.data as HomePageData)?.footer?.description 
   ))}
   <ViewTransitions />
 </head>
-<body class="bg-bg text-text text-text-m font-primary leading-relaxed antialiased">
+<body class="text-text font-primary antialiased">
 
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-primary focus:text-white focus:py-xs focus:px-s focus:rounded focus:text-text-s">
     Aller au contenu principal
   </a>
 
-  <Header site={site} currentUrl={currentUrl} />
+  <Header site={site} currentUrl={currentUrl} isDark={headerDark} />
   <MobileMenu site={site} />
 
   <main id="main-content" data-pagefind-body>
@@ -83,7 +84,7 @@ const footerDescription = (homeData?.data as HomePageData)?.footer?.description 
     <slot />
   </main>
 
-  <Footer site={site} footerDescription={footerDescription} />
+  <Footer site={site} />
 
   <JsonLd site={site} breadcrumb={breadcrumb} currentUrl={currentUrl} isHome={isHome} />
 

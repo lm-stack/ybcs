@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import Grid from '../components/Grid.astro';
+import CertificationBadge from '../components/CertificationBadge.astro';
+import { getEntry } from 'astro:content';
+import type { CertificationsPageData } from '../lib/data';
+
+const page = await getEntry('pages', 'certifications');
+const data = page!.data as CertificationsPageData;
+---
+
+<Base
+  seo={data.seo}
+  breadcrumb="Certifications"
+  headerDark
+>
+  <Hero title={data.hero.title} size="compact" />
+
+  {/* Intro */}
+  <Section>
+    <div class="text-center max-w-[800px] mx-auto">
+      <h2 class="mb-m">{data.intro.title}</h2>
+      <p class="text-text text-text-l mb-xl">{data.intro.description}</p>
+      <div class="flex flex-wrap justify-center gap-xs">
+        {data.focus.map((item) => (
+          <span class="bg-bg-light text-primary text-text-s px-s py-2xs rounded-l font-medium">{item}</span>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  {/* Certifications list */}
+  <Section class="bg-bg-light">
+    <div class="flex flex-col gap-l max-w-[800px] mx-auto">
+      {data.certifications.map((cert) => (
+        <div class="card p-l flex flex-col md:flex-row gap-l items-start">
+          {cert.image && (
+            <div class="w-20 h-20 shrink-0 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+              <img src={cert.image} alt={cert.title} class="max-w-full max-h-full" loading="lazy" />
+            </div>
+          )}
+          <div>
+            <span class="bg-bg-light text-primary text-text-xs px-xs py-3xs rounded-l mb-xs inline-block font-medium">{cert.category}</span>
+            <h3 class="text-text-l font-bold font-secondary mb-xs">{cert.title}</h3>
+            <p class="text-text text-text-s">{cert.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+</Base>

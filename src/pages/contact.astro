@@ -18,18 +18,22 @@ const site = await getSiteData();
 <Base
   seo={data.seo}
   breadcrumb="Contact"
+  headerDark
 >
-  <Hero title={data.hero.title} />
+  <Hero title={data.hero.title} size="compact" />
 
   <Section>
+    <p class="text-text text-text-l text-center max-w-[700px] mx-auto mb-2xl">{data.intro}</p>
+
     <Grid cols="2" gap="xl">
-      <div>
+      {/* Form */}
+      <div class="card p-l">
         <h2 class="mb-m">
-          <Icon name={toIconName(data.form.icon)} class="inline w-6 h-6 mr-3xs align-[-3px]" aria-hidden="true" />
+          <Icon name={toIconName(data.form.icon)} class="inline w-6 h-6 mr-3xs align-[-3px] text-primary" aria-hidden="true" />
           {data.form.title}
         </h2>
         <form data-webhook={site.webhookUrl} data-webhook-token={site.webhookToken || ''} novalidate>
-          <!-- Honeypot anti-spam — champ invisible pour les humains -->
+          <!-- Honeypot anti-spam -->
           <div class="absolute opacity-0 -z-10 h-0 overflow-hidden" aria-hidden="true">
             <label for="website">Website</label>
             <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
@@ -38,16 +42,39 @@ const site = await getSiteData();
           <FormField type="email" name="email" label="Email" required icon="at" maxlength={254} autocomplete="email" />
           <FormField type="textarea" name="message" label="Message" required icon="chat-text" maxlength={5000} />
           <div class="cf-turnstile" data-sitekey={site.turnstileSiteKey} data-language="fr" data-appearance="interaction-only"></div>
-          <Button type="submit" variant="primary" icon="paper-plane-tilt">Envoyer</Button>
+          <Button type="submit" variant="primary" icon="paper-plane-tilt" class="mt-m">Envoyer</Button>
           <div id="form-feedback" class="form-feedback" role="status" aria-live="polite"></div>
         </form>
       </div>
-      <div>
-        {data.info.map((item, i) => (
-          <Card title={item.title} icon={item.icon} class={i < data.info.length - 1 ? 'mb-m' : ''}>
-            <p>{item.text}</p>
+
+      {/* Info */}
+      <div class="flex flex-col gap-m">
+        {data.info.map((item) => (
+          <Card icon={item.icon}>
+            <h4 class="mb-2xs">{item.title}</h4>
+            <p class="text-text">{item.text}</p>
           </Card>
         ))}
+
+        {data.addresses && data.addresses.map((addr: any) => (
+          <Card icon="ph-map-pin">
+            <h4 class="mb-2xs">{addr.title}</h4>
+            <p class="text-text mb-xs">{addr.address}</p>
+            <a
+              href={addr.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary text-text-s hover:text-secondary transition-colors duration-300 no-underline"
+            >
+              Voir sur Google Maps →
+            </a>
+          </Card>
+        ))}
+
+        <div class="card p-m text-center">
+          <Icon name="ph:clock" class="w-6 h-6 text-primary mx-auto mb-xs" aria-hidden="true" />
+          <p class="text-primary font-bold text-text-s">Réponse en 24 heures seulement</p>
+        </div>
       </div>
     </Grid>
   </Section>

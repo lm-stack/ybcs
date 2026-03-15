@@ -1,0 +1,33 @@
+---
+import CmsImage from './CmsImage.astro';
+
+interface Client {
+  name: string;
+  logo: string;
+}
+
+interface Props {
+  clients: Client[];
+  title?: string;
+}
+
+const { clients, title } = Astro.props;
+---
+
+<section class="py-xl">
+  <div class="max-w-container mx-auto px-m">
+    {title && <p class="text-text-muted text-text-s text-center mb-l uppercase tracking-wider">{title}</p>}
+    <div class="flex flex-wrap justify-center items-center gap-xl">
+      {clients.map((client) => (
+        <div class="opacity-40 hover:opacity-70 transition-opacity duration-300">
+          <CmsImage
+            src={client.logo}
+            alt={client.name}
+            width={120}
+            height={40}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

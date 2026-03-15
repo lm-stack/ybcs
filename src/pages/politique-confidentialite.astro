@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+---
+
+<Base
+  seo={{ title: 'Politique de confidentialité', description: 'Politique de confidentialité de YB Conseils & Solutions Sàrl. Informations sur la collecte et le traitement de vos données personnelles.' }}
+  breadcrumb="Politique de confidentialité"
+  headerDark
+>
+  <Hero title="Politique de confidentialité" size="compact" />
+
+  <Section>
+    <div class="max-w-[800px] mx-auto">
+      <p class="text-text text-text-l mb-xl">
+        Cette politique de confidentialité décrit comment YB Conseils & Solutions Sàrl collecte, utilise et protège vos données personnelles conformément à la Loi fédérale sur la protection des données (LPD) et au Règlement général sur la protection des données (RGPD).
+      </p>
+
+      <h2 class="mb-m">Responsable du traitement</h2>
+      <p class="text-text mb-xl">
+        YB Conseils & Solutions Sàrl<br />
+        Rue de Battentin 21, 1630 Bulle<br />
+        Email : info@yb-cs.ch
+      </p>
+
+      <h2 class="mb-m">Données collectées</h2>
+      <p class="text-text mb-xl">
+        Lors de l'utilisation de notre formulaire de contact, nous collectons votre nom, votre adresse email et le contenu de votre message. Ces données sont utilisées uniquement pour répondre à votre demande.
+      </p>
+
+      <h2 class="mb-m">Vos droits</h2>
+      <p class="text-text mb-xl">
+        Vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles. Pour exercer ces droits, contactez-nous à info@yb-cs.ch.
+      </p>
+    </div>
+  </Section>
+</Base>

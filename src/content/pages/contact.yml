@@ -1,21 +1,28 @@
 seo:
   title: "Contact"
-  description: "Contactez-nous par formulaire, email ou téléphone. Personnalisez cette description pour indiquer vos coordonnées et horaires (150-160 caractères max)."
+  description: "Contactez YB Conseils & Solutions pour des conseils personnalisés en gouvernance des données. Réponse en 24 heures."
 
 hero:
   title: "Contact"
 
+intro: "Que vous cherchiez des conseils personnalisés, des solutions sur mesure ou que vous ayez simplement des questions, nous sommes à votre disposition."
+
 form:
-  title: "Contactez-nous"
-  icon: "ph-chat-circle"
+  title: "Envoyez-nous un message"
+  icon: "ph-chat-text"
 
 info:
-  - icon: "ph-map-pin"
-    title: "Adresse"
-    text: "À personnaliser"
   - icon: "ph-envelope-simple"
     title: "Email"
-    text: "email@example.com"
+    text: "info@yb-cs.ch"
   - icon: "ph-phone"
     title: "Téléphone"
-    text: "+41 00 000 00 00"
+    text: "+41 26 420 80 50"
+
+addresses:
+  - title: "Bureau de Bulle"
+    address: "Rue de Battentin 21, 1630 Bulle"
+    mapUrl: "https://maps.google.com/?q=Rue+de+Battentin+21+1630+Bulle"
+  - title: "Bureau de Sierre"
+    address: "Technopôle 10, 3960 Sierre"
+    mapUrl: "https://maps.google.com/?q=Technopole+10+3960+Sierre"

@@ -1,0 +1,18 @@
+seo:
+  title: "Gestion des risques"
+  description: "Allouez vos ressources là où elles comptent réellement grâce à une gestion réfléchie des risques."
+title: "Gestion des risques"
+number: "03"
+icon: "ph-warning-circle"
+shortDescription: "Allouez vos ressources là où elles comptent réellement grâce à une gestion réfléchie des risques tout en gagnant en sérénité."
+longDescription: "Vos ressources sont précieuses. Allouez-les là où elles comptent réellement grâce à une gestion réfléchie des risques tout en gagnant en sérénité."
+services:
+  - title: "Analyse des risques"
+    description: "Identification et évaluation des risques pesant sur votre organisation."
+    icon: "ph-chart-bar"
+  - title: "Plan de traitement"
+    description: "Définition de mesures concrètes pour maîtriser les risques identifiés."
+    icon: "ph-list-checks"
+  - title: "Gouvernance"
+    description: "Mise en place d'un cadre de gouvernance des risques adapté."
+    icon: "ph-buildings"

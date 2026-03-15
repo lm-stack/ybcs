@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import Grid from '../components/Grid.astro';
+import Card from '../components/Card.astro';
+import TeamMember from '../components/TeamMember.astro';
+import { Icon } from 'astro-icon/components';
+import { getEntry } from 'astro:content';
+import { getSiteData, toIconName } from '../lib/data';
+import type { EquipePageData } from '../lib/data';
+
+const page = await getEntry('pages', 'equipe');
+const data = page!.data as EquipePageData;
+const site = await getSiteData();
+---
+
+<Base
+  seo={data.seo}
+  breadcrumb="Équipe"
+  headerDark
+>
+  <Hero title={data.hero.title} size="compact" />
+
+  {/* Intro + Mission */}
+  <Section>
+    <div class="text-center max-w-[800px] mx-auto">
+      <h2 class="mb-m">{data.intro.title}</h2>
+      <p class="text-text text-text-l">{data.intro.description}</p>
+    </div>
+  </Section>
+
+  {/* Team members */}
+  <Section>
+    <Grid cols="2" gap="l">
+      {data.team.map((member) => (
+        <TeamMember
+          name={member.name}
+          role={member.role}
+          specialty={member.specialty}
+          description={member.description}
+          photo={member.photo}
+        />
+      ))}
+    </Grid>
+  </Section>
+
+  {/* Values */}
+  <Section class="bg-bg-light">
+    <h2 class="text-center mb-2xl">Nos valeurs</h2>
+    <Grid cols="3" gap="l">
+      {data.values.map((value) => (
+        <Card icon={value.icon}>
+          <h4 class="mb-xs">{value.title}</h4>
+          <p class="text-text text-text-s">{value.description}</p>
+        </Card>
+      ))}
+    </Grid>
+  </Section>
+
+  {/* Mission */}
+  <Section>
+    <div class="card p-xl text-center max-w-[800px] mx-auto">
+      <Icon name="ph:target" class="w-10 h-10 text-primary mx-auto mb-m" aria-hidden="true" />
+      <h3 class="mb-m">Notre mission</h3>
+      <p class="text-text text-text-l italic">{data.mission}</p>
+    </div>
+  </Section>
+
+</Base>

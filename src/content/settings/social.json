@@ -1,3 +1,9 @@
 {
-  "social": []
+  "social": [
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/company/yb-conseils-solutions/",
+      "icon": "ph-linkedin-logo"
+    }
+  ]
 }

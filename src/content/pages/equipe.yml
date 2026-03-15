@@ -1,0 +1,45 @@
+seo:
+  title: "Notre équipe"
+  description: "Découvrez l'équipe pluridisciplinaire de YB Conseils & Solutions, prête à guider votre organisation dans les défis de la gouvernance des données."
+
+hero:
+  title: "Équipe"
+
+intro:
+  title: "Notre équipe"
+  description: "Notre valeur ajoutée repose sur une équipe dynamique et pluridisciplinaire prête à guider votre organisation dans les défis de la gouvernance des données."
+
+team:
+  - name: "Yvann Barras"
+    role: "Consultant and Project Manager"
+    specialty: "Associate"
+    description: "Spécialisé dans la gestion des risques et la gouvernance d'entreprise. Formateur certifié PECB et chargé de cours dans diverses institutions de formation."
+    photo: "/images/team/yvann-barras.jpg"
+  - name: "Livio di Tria"
+    role: "Technology Law Expert"
+    specialty: "Associate"
+    description: "Passionné par l'innovation et les défis numériques, il apporte des solutions concrètes pour la transformation digitale. Chargé de cours HES et co-fondateur de Swissprivacy.law."
+    photo: "/images/team/livio-di-tria.jpg"
+  - name: "Emilie Barras"
+    role: "Certified Fiduciary Expert"
+    specialty: "Founder"
+    description: "Fondatrice de YB Conseils & Solutions Sàrl, consultante en gestion de la sécurité de l'information et protection des données, spécialisée dans la gestion des cyber-risques."
+    photo: "/images/team/emilie-barras.jpg"
+  - name: "Christophe Monnet"
+    role: "Junior Legal Consultant and Digitalization"
+    specialty: ""
+    description: "Passionné par le droit et la technologie, il accompagne les entreprises dans leur transition numérique, alliant vision stratégique et efficacité opérationnelle."
+    photo: "/images/team/christophe-monnet.jpg"
+
+values:
+  - icon: "ph-trophy"
+    title: "Excellence"
+    description: "Engagement envers un service de qualité supérieure et le dépassement des attentes de nos clients."
+  - icon: "ph-lightbulb"
+    title: "Innovation"
+    description: "Adoption du changement et exploitation des dernières technologies pour créer de la valeur ajoutée."
+  - icon: "ph-handshake"
+    title: "Collaboration"
+    description: "Travail étroit avec nos clients pour comprendre leurs défis et développer des solutions personnalisées."
+
+mission: "Guider les organisations à travers la transformation numérique, de la gestion du changement à la protection des données et à la prévention des cybermenaces, en renforçant leur résilience."

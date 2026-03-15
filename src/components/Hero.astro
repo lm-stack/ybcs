@@ -2,16 +2,40 @@
 interface Props {
   title: string;
   subtitle?: string;
+  description?: string;
   size?: 'default' | 'compact';
+  rating?: { score: string; reviews: string };
 }
 
-const { title, subtitle, size = 'default' } = Astro.props;
+const { title, subtitle, description, size = 'default', rating } = Astro.props;
 const paddingClass = size === 'compact' ? 'py-2xl' : 'py-4xl';
 ---
 
-<section class={`bg-primary ${paddingClass}`}>
-  <div class="max-w-container mx-auto px-m text-center">
-    <h1 class="text-white">{title}</h1>
-    {subtitle && <p class="text-white text-text-l mt-2xs">{subtitle}</p>}
+<section class={`section-dark relative overflow-hidden ${paddingClass}`}>
+  {/* Decorative halos */}
+  {size === 'default' && (
+    <>
+      <div class="halo halo--blue w-[500px] h-[500px] -top-[280px] -left-[130px]" aria-hidden="true"></div>
+      <div class="halo halo--accent w-[400px] h-[400px] -bottom-[100px] -right-[150px]" aria-hidden="true"></div>
+    </>
+  )}
+
+  <div class="relative z-10 max-w-container mx-auto px-m text-center">
+    {/* Rating badge */}
+    {rating && (
+      <div class="inline-flex items-center gap-2xs glass rounded-l px-s py-2xs mb-l">
+        <span class="text-[#FFD700] text-text-s">★★★★★</span>
+        <span class="text-white text-text-s font-medium">{rating.score}</span>
+        <span class="text-white/60 text-text-xs">{rating.reviews}</span>
+      </div>
+    )}
+
+    {subtitle && <p class="text-primary text-text-l font-medium mb-xs uppercase tracking-wider">{subtitle}</p>}
+
+    {/* Title with gradient text */}
+    <h1 class="gradient-text" set:html={title} />
+
+    {description && <p class="text-[#BAC4D6] text-text-xl mt-m max-w-[700px] mx-auto">{description}</p>}
+    <slot />
   </div>
 </section>

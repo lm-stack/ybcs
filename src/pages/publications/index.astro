@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import Grid from '../../components/Grid.astro';
+import Card from '../../components/Card.astro';
+import { getCollection } from 'astro:content';
+
+const publications = await getCollection('publications');
+const sorted = publications.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+
+<Base
+  seo={{ title: 'Publications', description: 'Articles et publications de YB Conseils & Solutions sur la gouvernance des données.' }}
+  breadcrumb="Publications"
+  headerDark
+>
+  <Hero
+    title="Publications"
+    description="Découvrez nos articles et analyses sur la gouvernance des données."
+    size="compact"
+  />
+
+  <Section>
+    {sorted.length > 0 ? (
+      <Grid cols="2" gap="l">
+        {sorted.map((pub) => (
+          <Card>
+            {pub.data.categories && pub.data.categories.length > 0 && (
+              <div class="flex flex-wrap gap-2xs mb-xs">
+                {pub.data.categories.map((cat: string) => (
+                  <span class="bg-bg-light text-primary text-text-xs px-xs py-3xs rounded-l font-medium">{cat}</span>
+                ))}
+              </div>
+            )}
+            <h3 class="text-text-l font-bold font-secondary mb-xs">{pub.data.title}</h3>
+            <p class="text-text text-text-s mb-m">{pub.data.excerpt}</p>
+            <p class="text-text-muted text-text-xs">
+              {new Date(pub.data.date).toLocaleDateString('fr-CH', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </p>
+          </Card>
+        ))}
+      </Grid>
+    ) : (
+      <div class="text-center">
+        <p class="text-text text-text-l">Aucune publication pour le moment.</p>
+      </div>
+    )}
+  </Section>
+
+</Base>

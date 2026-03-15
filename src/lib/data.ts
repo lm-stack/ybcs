@@ -28,7 +28,7 @@ export interface SiteData {
     };
   };
   nav: Array<{
-    url: string;
+    url?: string;
     label: string;
     icon?: string;
     children?: Array<{
@@ -61,23 +61,39 @@ export interface SeoData {
 
 export interface HomePageData {
   seo: SeoData;
-  hero: { title: string; subtitle?: string };
-  content: { title: string; cards: Array<{ icon: string; title: string; text: string }> };
+  hero: { subtitle?: string; title: string; description?: string };
+  stats: Array<{ value: string; label: string; sublabels?: string[] }>;
+  clients: Array<{ name: string; logo: string }>;
+  testimonials: Array<{ quote: string; name: string; role: string; photo?: string }>;
+  certifications: Array<{ title: string; category: string; image?: string }>;
+  cta: { title: string; subtitle: string };
   footer: { description: string };
 }
 
 export interface ContactPageData {
   seo: SeoData;
   hero: { title: string };
+  intro: string;
   form: { title: string; icon: string };
   info: Array<{ icon: string; title: string; text: string }>;
+  addresses: Array<{ title: string; address: string; mapUrl: string }>;
 }
 
-export interface AProposPageData {
+export interface EquipePageData {
   seo: SeoData;
   hero: { title: string };
-  story: { title: string; icon: string; paragraphs: string[] };
-  sidebar: { title: string; icon: string; text: string };
+  intro: { title: string; description: string };
+  team: Array<{ name: string; role: string; specialty?: string; description?: string; photo?: string }>;
+  values: Array<{ icon: string; title: string; description: string }>;
+  mission: string;
+}
+
+export interface CertificationsPageData {
+  seo: SeoData;
+  hero: { title: string };
+  intro: { title: string; description: string };
+  focus: string[];
+  certifications: Array<{ title: string; category: string; description: string; image?: string }>;
 }
 
 export interface RecherchePageData {

@@ -1,0 +1,56 @@
+---
+import { Icon } from 'astro-icon/components';
+import { toIconName } from '../lib/data';
+
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  icon?: string;
+  href?: string;
+  featured?: boolean;
+}
+
+const { number, title, description, icon, href, featured = false } = Astro.props;
+
+const iconName = icon ? toIconName(icon) : null;
+
+const cardClass = featured
+  ? 'card-dark p-l group'
+  : 'card p-l group';
+
+const titleColor = featured ? 'text-white' : 'text-secondary';
+const textColor = featured ? 'text-[#BAC4D6]' : 'text-text';
+const numberColor = featured ? 'text-white/10' : 'text-border';
+const linkColor = featured
+  ? 'text-primary hover:text-white'
+  : 'text-primary hover:text-secondary';
+---
+
+<div class={cardClass}>
+  <div class="flex items-start gap-m">
+    <span class={`text-h2 font-bold font-secondary ${numberColor} shrink-0`}>{number}</span>
+    <div>
+      <h3 class={`${titleColor} text-text-l font-bold font-secondary mb-xs flex items-center gap-2xs`}>
+        {iconName && (
+          <Icon
+            name={iconName}
+            class="w-5 h-5 text-primary transition-transform duration-300 group-hover:rotate-12"
+            aria-hidden="true"
+          />
+        )}
+        {title}
+      </h3>
+      <p class={`${textColor} text-text-s`}>{description}</p>
+      {href && (
+        <a
+          href={href}
+          class={`inline-flex items-center gap-2xs ${linkColor} text-text-s mt-m transition-colors duration-300 no-underline`}
+        >
+          En savoir plus
+          <Icon name="ph:arrow-right" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+        </a>
+      )}
+    </div>
+  </div>
+</div>

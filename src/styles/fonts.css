@@ -1,17 +1,46 @@
 /* ==========================================================================
    Web Fonts — Self-hosted (woff2 only)
-   ==========================================================================
-
-   1. Download woff2 files to public/fonts/
-   2. Declare @font-face rules below
-   3. Update fontFamily in tailwind.config.mjs
-
-   Example:
-   @font-face {
-     font-family: 'Inter';
-     src: url('/fonts/inter-v18-latin-regular.woff2') format('woff2');
-     font-weight: 400;
-     font-style: normal;
-     font-display: swap;
-   }
+   Manrope (headings) + DM Sans (body)
    ========================================================================== */
+
+/* Manrope — Headings */
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/manrope-v20-latin-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/manrope-v20-latin-800.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* DM Sans — Body */
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/dm-sans-v17-latin-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/dm-sans-v17-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/dm-sans-v17-latin-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

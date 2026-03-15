@@ -8,7 +8,7 @@ const navChildSchema = z.object({
 });
 
 const navItemSchema = z.object({
-  url: z.string(),
+  url: z.string().optional(),
   label: z.string(),
   icon: z.string().optional(),
   children: z.array(navChildSchema).optional(),
@@ -146,8 +146,60 @@ const customPagesCollection = defineCollection({
   }),
 });
 
+// --- Solutions collection ---
+
+const solutionsCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    seo: seoSchema,
+    title: z.string(),
+    number: z.string(),
+    icon: z.string().optional(),
+    shortDescription: z.string(),
+    longDescription: z.string(),
+    services: z.array(z.object({
+      title: z.string(),
+      description: z.string(),
+      icon: z.string().optional(),
+    })).optional(),
+  }),
+});
+
+// --- Formations collection ---
+
+const formationsCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    seo: seoSchema,
+    title: z.string(),
+    type: z.enum(['workshop', 'evenement', 'pecb']),
+    categories: z.array(z.string()).optional(),
+    description: z.string(),
+    image: z.string().optional(),
+    date: z.string().optional(),
+  }),
+});
+
+// --- Publications collection ---
+
+const publicationsCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    seo: seoSchema,
+    title: z.string(),
+    categories: z.array(z.string()).optional(),
+    excerpt: z.string(),
+    content: z.string().optional(),
+    image: z.string().optional(),
+    date: z.string(),
+  }),
+});
+
 export const collections = {
   pages: pagesCollection,
   settings: settingsCollection,
   'custom-pages': customPagesCollection,
+  solutions: solutionsCollection,
+  formations: formationsCollection,
+  publications: publicationsCollection,
 };

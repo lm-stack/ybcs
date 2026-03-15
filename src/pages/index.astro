@@ -2,29 +2,123 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
-import Card from '../components/Card.astro';
 import Grid from '../components/Grid.astro';
-import { getEntry } from 'astro:content';
+import Button from '../components/Button.astro';
+import StatsBar from '../components/StatsBar.astro';
+import LogoCloud from '../components/LogoCloud.astro';
+import SolutionCard from '../components/SolutionCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import CertificationBadge from '../components/CertificationBadge.astro';
+import { getEntry, getCollection } from 'astro:content';
+import { getSiteData } from '../lib/data';
 import type { HomePageData } from '../lib/data';
 
 const home = await getEntry('pages', 'home');
 const data = home!.data as HomePageData;
+const site = await getSiteData();
+const solutions = await getCollection('solutions');
+const sortedSolutions = solutions.sort((a, b) => a.data.number.localeCompare(b.data.number));
 ---
 
 <Base
   seo={data.seo}
   isHome
+  headerDark
 >
-  <Hero title={data.hero.title} subtitle={data.hero.subtitle} />
+  {/* Hero — dark section with gradient text */}
+  <Hero
+    title={data.hero.title}
+    subtitle={data.hero.subtitle}
+    description={data.hero.description}
+    rating={{ score: '4.9', reviews: '20+ Reviews' }}
+  >
+    <div class="flex gap-m justify-center mt-xl flex-wrap">
+      <Button href="/solutions/" variant="primary" icon="arrow-right">Nos solutions</Button>
+      <Button href="/contact/" variant="outline-white">Contact</Button>
+    </div>
+  </Hero>
 
+  {/* Stats — dark section */}
+  <StatsBar stats={data.stats} />
+
+  {/* Logo cloud — white background */}
+  {data.clients && data.clients.length > 0 && (
+    <LogoCloud clients={data.clients} title="Ils nous font confiance" />
+  )}
+
+  {/* Solutions — white background, 3-column grid */}
   <Section>
-    <h2 class="mb-m">{data.content.title}</h2>
-    <Grid cols="3" gap="l">
-      {data.content.cards.map((card) => (
-        <Card title={card.title} icon={card.icon}>
-          <p>{card.text}</p>
-        </Card>
+    <div class="text-center mb-2xl">
+      <p class="text-primary text-text-s font-medium uppercase tracking-wider mb-2xs">Solutions</p>
+      <h2 class="mb-xs">Nos solutions</h2>
+      <p class="text-text text-text-l max-w-[700px] mx-auto">
+        Tirez profit de notre approche transversale en matière de gouvernance des données.
+      </p>
+    </div>
+    <Grid cols="3" gap="m">
+      {sortedSolutions.map((solution, i) => (
+        <SolutionCard
+          number={solution.data.number}
+          title={solution.data.title}
+          description={solution.data.shortDescription}
+          icon={solution.data.icon}
+          href={`/solutions/${solution.id}/`}
+          featured={i === 1}
+        />
       ))}
     </Grid>
+    <div class="text-center mt-xl">
+      <Button href="/solutions/" variant="outline">Toutes nos solutions</Button>
+    </div>
   </Section>
+
+  {/* Certifications — light background */}
+  {data.certifications && data.certifications.length > 0 && (
+    <Section class="bg-bg-light">
+      <div class="text-center mb-2xl">
+        <p class="text-primary text-text-s font-medium uppercase tracking-wider mb-2xs">Expertise</p>
+        <h2 class="mb-xs">Certifications</h2>
+        <p class="text-text text-text-l max-w-[700px] mx-auto">
+          Notre engagement envers l'excellence est attesté par nos certifications.
+        </p>
+      </div>
+      <Grid cols="3" gap="m">
+        {data.certifications.slice(0, 3).map((cert) => (
+          <CertificationBadge
+            title={cert.title}
+            category={cert.category}
+            image={cert.image}
+          />
+        ))}
+      </Grid>
+      <div class="text-center mt-l">
+        <a href="/certifications/" class="text-primary text-text-s font-medium hover:text-secondary transition-colors duration-300 no-underline">
+          En savoir plus sur nos certifications →
+        </a>
+      </div>
+    </Section>
+  )}
+
+  {/* Testimonials — white background */}
+  {data.testimonials && data.testimonials.length > 0 && (
+    <Section>
+      <div class="text-center mb-2xl">
+        <p class="text-primary text-text-s font-medium uppercase tracking-wider mb-2xs">Témoignages</p>
+        <h2 class="mb-xs">Ce que disent nos clients</h2>
+        <p class="text-text text-text-l">Regards de nos clients sur notre accompagnement face à des enjeux concrets.</p>
+        <p class="text-primary font-bold mt-xs">4,9 sur Google</p>
+      </div>
+      <Grid cols="2" gap="l">
+        {data.testimonials.map((t) => (
+          <TestimonialCard
+            quote={t.quote}
+            name={t.name}
+            role={t.role}
+            photo={t.photo}
+          />
+        ))}
+      </Grid>
+    </Section>
+  )}
+
 </Base>

@@ -1,0 +1,18 @@
+seo:
+  title: "Protection des données"
+  description: "Renforcez la confiance de vos clients et partenaires vis-à-vis de l'utilisation de leurs données."
+title: "Protection des données"
+number: "02"
+icon: "ph-shield-check"
+shortDescription: "Renforcez la confiance sans créer une usine à gaz pour répondre aux attentes de vos clients et partenaires vis-à-vis de l'utilisation de leurs données."
+longDescription: "Vos clients et vos partenaires vous font confiance. Renforcez-la sans créer une usine à gaz pour répondre à leurs attentes vis-à-vis de l'utilisation de leurs données."
+services:
+  - title: "Audit de conformité"
+    description: "Évaluation de votre niveau de conformité en matière de protection des données."
+    icon: "ph-clipboard-text"
+  - title: "DPO externe"
+    description: "Délégué à la protection des données externalisé pour votre organisation."
+    icon: "ph-user-circle-check"
+  - title: "Formation et sensibilisation"
+    description: "Programmes de formation adaptés à vos équipes."
+    icon: "ph-chalkboard-teacher"

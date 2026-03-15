@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+---
+
+<Base
+  seo={{ title: 'Mentions légales', description: 'Mentions légales du site YB Conseils & Solutions Sàrl.' }}
+  breadcrumb="Mentions légales"
+  headerDark
+>
+  <Hero title="Mentions légales" size="compact" />
+
+  <Section>
+    <div class="max-w-[800px] mx-auto">
+      <h2 class="mb-m">Éditeur du site</h2>
+      <p class="text-text mb-xl">
+        YB Conseils & Solutions Sàrl<br />
+        Rue de Battentin 21, 1630 Bulle<br />
+        Suisse<br />
+        Email : info@yb-cs.ch<br />
+        Téléphone : +41 26 420 80 50
+      </p>
+
+      <h2 class="mb-m">Hébergement</h2>
+      <p class="text-text mb-xl">
+        Ce site est hébergé par Cloudflare, Inc.<br />
+        101 Townsend St, San Francisco, CA 94107, États-Unis
+      </p>
+
+      <h2 class="mb-m">Propriété intellectuelle</h2>
+      <p class="text-text mb-xl">
+        L'ensemble du contenu de ce site (textes, images, logos) est la propriété de YB Conseils & Solutions Sàrl ou de ses partenaires. Toute reproduction sans autorisation est interdite.
+      </p>
+    </div>
+  </Section>
+</Base>

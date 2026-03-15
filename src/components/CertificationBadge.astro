@@ -1,0 +1,27 @@
+---
+import CmsImage from './CmsImage.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  category?: string;
+}
+
+const { title, description, image, category } = Astro.props;
+---
+
+<div class="card p-m text-center group">
+  {image && (
+    <div class="w-24 h-24 mx-auto mb-m flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-300">
+      <CmsImage src={image} alt={title} width={192} height={192} />
+    </div>
+  )}
+  {category && (
+    <span class="bg-bg-light text-primary text-text-xs px-xs py-3xs rounded-l mb-xs inline-block font-medium">{category}</span>
+  )}
+  <h4 class="text-secondary text-text-s font-bold font-secondary">{title}</h4>
+  {description && (
+    <p class="text-text text-text-xs mt-xs">{description}</p>
+  )}
+</div>

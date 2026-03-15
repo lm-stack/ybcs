@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon/components';
+import CmsImage from './CmsImage.astro';
+
+interface Props {
+  quote: string;
+  name: string;
+  role: string;
+  photo?: string;
+}
+
+const { quote, name, role, photo } = Astro.props;
+---
+
+<div class="card p-l flex flex-col h-full">
+  <div class="flex items-center gap-2xs mb-m">
+    <span class="text-[#FFD700] text-text-s">★★★★★</span>
+  </div>
+  <blockquote class="text-text text-text-m leading-relaxed flex-grow mb-l">
+    "{quote}"
+  </blockquote>
+  <div class="flex items-center gap-m border-t border-border pt-m">
+    {photo && (
+      <div class="w-12 h-12 rounded-full overflow-hidden shrink-0">
+        <CmsImage src={photo} alt={name} width={96} height={96} />
+      </div>
+    )}
+    <div>
+      <p class="text-secondary font-bold font-secondary text-text-s">{name}</p>
+      <p class="text-text-muted text-text-xs">{role}</p>
+    </div>
+  </div>
+</div>

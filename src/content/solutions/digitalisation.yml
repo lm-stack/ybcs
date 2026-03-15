@@ -1,0 +1,18 @@
+seo:
+  title: "Digitalisation"
+  description: "Nous vous accompagnons pour adopter et intégrer les outils informatiques qui font vraiment sens pour votre organisation."
+title: "Digitalisation"
+number: "05"
+icon: "ph-rocket-launch"
+shortDescription: "Face aux innombrables possibilités d'outils informatiques, nous vous accompagnons pour adopter et intégrer ceux qui font vraiment sens."
+longDescription: "Les outils informatiques impactent directement votre fonctionnement. Face aux innombrables possibilités, nous vous accompagnons pour adopter et intégrer celles qui font vraiment sens."
+services:
+  - title: "Stratégie digitale"
+    description: "Définition d'une feuille de route adaptée à vos objectifs."
+    icon: "ph-compass"
+  - title: "Intégration d'outils"
+    description: "Sélection et déploiement des solutions les plus pertinentes."
+    icon: "ph-puzzle-piece"
+  - title: "Accompagnement au changement"
+    description: "Soutien de vos équipes dans l'adoption des nouveaux outils."
+    icon: "ph-hand-heart"

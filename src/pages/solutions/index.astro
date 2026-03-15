@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import Grid from '../../components/Grid.astro';
+import SolutionCard from '../../components/SolutionCard.astro';
+import { getCollection } from 'astro:content';
+
+const solutions = await getCollection('solutions');
+---
+
+<Base
+  seo={{ title: 'Solutions', description: 'Nous sommes votre partenaire de confiance en matière de gouvernance des données. Tirez profit de notre approche transversale.' }}
+  breadcrumb="Solutions"
+  headerDark
+>
+  <Hero
+    title="Solutions"
+    description="Nous sommes votre partenaire de confiance en matière de gouvernance des données. Tirez profit de notre approche transversale."
+    size="compact"
+  />
+
+  {/* Notre approche */}
+  <Section>
+    <div class="card p-xl max-w-[800px] mx-auto text-center">
+      <h2 class="mb-m">Notre approche</h2>
+      <p class="text-text text-text-l">
+        Nous ne sommes ni un prestataire informatique, ni une étude d'avocats. Pour nous, la gouvernance des données ne peut plus être pensée en silos. C'est pourquoi nous réunissons des expertises de pointe pour construire des solutions globales, pragmatiques et innovantes.
+      </p>
+    </div>
+  </Section>
+
+  {/* Solutions list — 3-column grid */}
+  <Section class="bg-bg-light">
+    <Grid cols="3" gap="m">
+      {solutions
+        .sort((a, b) => a.data.number.localeCompare(b.data.number))
+        .map((solution, i) => (
+          <SolutionCard
+            number={solution.data.number}
+            title={solution.data.title}
+            description={solution.data.longDescription}
+            icon={solution.data.icon}
+            href={`/solutions/${solution.id}/`}
+            featured={i === 1}
+          />
+        ))
+      }
+    </Grid>
+  </Section>
+
+</Base>

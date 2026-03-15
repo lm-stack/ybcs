@@ -1,23 +1,66 @@
 seo:
-  title: "Accueil"
-  description: "Description de votre site en une ou deux phrases. Personnalisez ce texte pour décrire votre activité et attirer les visiteurs (150-160 caractères)."
+  title: "Gouvernance des données"
+  description: "YB Conseils & Solutions, votre partenaire en gouvernance des données. Nous intervenons là où les exigences juridiques, organisationnelles et techniques se rencontrent."
 
 hero:
-  title: "Site Blueprint"
-  subtitle: "Template prêt à personnaliser"
+  subtitle: "Votre partenaire en"
+  title: '<span class="text-white-word">Gouvernance</span> des <span class="text-white-word">données</span>'
+  description: "Nous intervenons là où les exigences juridiques, organisationnelles et techniques se rencontrent pour façonner des solutions globales, pragmatiques et innovantes."
 
-content:
-  title: "Bienvenue"
-  cards:
-    - icon: "ph-lightning"
-      title: "Section 1"
-      text: "Contenu à personnaliser."
-    - icon: "ph-gear"
-      title: "Section 2"
-      text: "Contenu à personnaliser."
-    - icon: "ph-chart-line-up"
-      title: "Section 3"
-      text: "Contenu à personnaliser."
+stats:
+  - value: "150+"
+    label: "Organisations accompagnées"
+    sublabels:
+      - "Entreprises/PME"
+      - "Administrations"
+      - "Associations"
+  - value: "400+"
+    label: "DataMoo distribuées"
+    sublabels:
+      - "Pour lutter contre le stress de la conformité"
+  - value: "4.9/5"
+    label: "Google"
+    sublabels:
+      - "Avis vérifiés"
+
+clients:
+  - name: "BCV"
+    logo: "/images/clients/bcv.png"
+  - name: "Allianz"
+    logo: "/images/clients/allianz.png"
+  - name: "Deloitte"
+    logo: "/images/clients/deloitte.png"
+  - name: "Google"
+    logo: "/images/clients/google.png"
+
+testimonials:
+  - quote: "YB Conseils & Solutions Sàrl est un partenaire particulièrement sérieux, fiable et consciencieux. Leur double expertise technique et légale représente une valeur ajoutée substantielle et contribue significativement à la réussite de nos projets."
+    name: "Lionel Stoudmann"
+    role: "Executive Director"
+  - quote: "En matière de protection des données, il n'y a pas beaucoup d'experts dans la région. Un domaine pour lequel un avocat ou juriste généraliste ne pourra que rarement vous donner des réponses claires. YBCS est devenu mon point de référence en matière de protection des données. Toujours disponible, sympathique et très compétents."
+    name: "Gilles Brunner"
+    role: "Swiss Entrepreneur, Digitalization, Regulatory Tech, co-founder biskoui.ch"
+
+certifications:
+  - title: "ISO/IEC 27001 Lead Implementer"
+    category: "Sécurité de l'information"
+    image: "/images/certifications/iso-27001.png"
+  - title: "ISO/IEC 27005 Risk Manager"
+    category: "Gestion des risques"
+    image: "/images/certifications/iso-27005.png"
+  - title: "ISO/IEC 27701 Lead Implementer"
+    category: "Protection des données"
+    image: "/images/certifications/iso-27701.png"
+  - title: "CIPP/E"
+    category: "Protection des données"
+    image: "/images/certifications/cipp-e.png"
+  - title: "CIPM"
+    category: "Protection des données"
+    image: "/images/certifications/cipm.png"
+
+cta:
+  title: "Vous avez une question ?"
+  subtitle: "Notre équipe se tient à votre disposition"
 
 footer:
-  description: "Template de site web."
+  description: "Votre partenaire en gouvernance des données. Solutions globales, pragmatiques et innovantes."

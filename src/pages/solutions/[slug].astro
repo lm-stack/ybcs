@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import Grid from '../../components/Grid.astro';
+import Card from '../../components/Card.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const solutions = await getCollection('solutions');
+  return solutions.map((solution) => ({
+    params: { slug: solution.id },
+    props: { solution },
+  }));
+}
+
+const { solution } = Astro.props;
+const data = solution.data;
+---
+
+<Base
+  seo={data.seo}
+  breadcrumb={data.title}
+  headerDark
+>
+  <Hero
+    title={data.title}
+    subtitle={`Solution ${data.number}`}
+    description={data.longDescription}
+    size="compact"
+  />
+
+  {/* Services détaillés */}
+  {data.services && data.services.length > 0 && (
+    <Section>
+      <h2 class="text-center mb-2xl">Nos services</h2>
+      <Grid cols="3" gap="l">
+        {data.services.map((service: any) => (
+          <Card icon={service.icon}>
+            <h4 class="mb-xs">{service.title}</h4>
+            <p class="text-text text-text-s">{service.description}</p>
+          </Card>
+        ))}
+      </Grid>
+    </Section>
+  )}
+
+</Base>

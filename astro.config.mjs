@@ -56,7 +56,7 @@ function scanPages(dir, prefix = '') {
 scanPages(pagesDir);
 
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://yb-cs.ch',
   prefetch: { defaultStrategy: 'hover' },
   integrations: [
     sitemap({

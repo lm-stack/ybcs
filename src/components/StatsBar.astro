@@ -1,0 +1,33 @@
+---
+interface StatItem {
+  value: string;
+  label: string;
+  sublabels?: string[];
+}
+
+interface Props {
+  stats: StatItem[];
+}
+
+const { stats } = Astro.props;
+---
+
+<section class="section-dark relative py-xl border-y border-white/10">
+  <div class="max-w-container mx-auto px-m">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-xl text-center">
+      {stats.map((stat) => (
+        <div>
+          <p class="text-h1 font-bold font-secondary text-primary">{stat.value}</p>
+          <p class="text-white font-medium text-text-l mt-2xs">{stat.label}</p>
+          {stat.sublabels && stat.sublabels.length > 0 && (
+            <div class="flex flex-wrap justify-center gap-2xs mt-xs">
+              {stat.sublabels.map((sub) => (
+                <span class="glass text-text-xs text-[#BAC4D6] px-xs py-3xs rounded-l">{sub}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

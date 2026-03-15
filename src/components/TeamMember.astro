@@ -1,0 +1,25 @@
+---
+import CmsImage from './CmsImage.astro';
+
+interface Props {
+  name: string;
+  role: string;
+  specialty?: string;
+  description?: string;
+  photo?: string;
+}
+
+const { name, role, specialty, description, photo } = Astro.props;
+---
+
+<div class="card p-l text-center">
+  {photo && (
+    <div class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-m border-2 border-primary/30">
+      <CmsImage src={photo} alt={name} width={256} height={256} />
+    </div>
+  )}
+  <h3 class="text-text-l font-bold font-secondary mb-2xs">{name}</h3>
+  <p class="text-primary text-text-s font-medium">{role}</p>
+  {specialty && <p class="text-text-muted text-text-xs mt-2xs">{specialty}</p>}
+  {description && <p class="text-text text-text-s mt-m">{description}</p>}
+</div>
