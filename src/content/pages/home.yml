@@ -25,13 +25,13 @@ stats:
 
 clients:
   - name: "BCV"
-    logo: "/images/clients/bcv.png"
+    logo: "/images/clients/bcv.svg"
   - name: "Allianz"
-    logo: "/images/clients/allianz.png"
+    logo: "/images/clients/allianz.svg"
   - name: "Deloitte"
-    logo: "/images/clients/deloitte.png"
+    logo: "/images/clients/deloitte.svg"
   - name: "Google"
-    logo: "/images/clients/google.png"
+    logo: "/images/clients/google.svg"
 
 testimonials:
   - quote: "YB Conseils & Solutions Sàrl est un partenaire particulièrement sérieux, fiable et consciencieux. Leur double expertise technique et légale représente une valeur ajoutée substantielle et contribue significativement à la réussite de nos projets."
