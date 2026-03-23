@@ -1,4 +1,6 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 // --- Settings schemas ---
 
@@ -59,12 +61,12 @@ const socialSchema = z.object({
 });
 
 const settingsCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.json', base: 'src/content/settings' }),
   schema: z.union([siteSchema, coordonneesSchema, socialSchema]),
 });
 
 const pagesCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.yml', base: 'src/content/pages' }),
 });
 
 // --- Custom pages schemas ---
@@ -134,7 +136,7 @@ const sectionSchema = z.discriminatedUnion('type', [
 ]);
 
 const customPagesCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.yml', base: 'src/content/custom-pages' }),
   schema: z.object({
     seo: seoSchema,
     hero: z.object({
@@ -149,7 +151,7 @@ const customPagesCollection = defineCollection({
 // --- Solutions collection ---
 
 const solutionsCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.yml', base: 'src/content/solutions' }),
   schema: z.object({
     seo: seoSchema,
     title: z.string(),
@@ -168,7 +170,7 @@ const solutionsCollection = defineCollection({
 // --- Formations collection ---
 
 const formationsCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.yml', base: 'src/content/formations' }),
   schema: z.object({
     seo: seoSchema,
     title: z.string(),
@@ -183,7 +185,7 @@ const formationsCollection = defineCollection({
 // --- Publications collection ---
 
 const publicationsCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.yml', base: 'src/content/publications' }),
   schema: z.object({
     seo: seoSchema,
     title: z.string(),
