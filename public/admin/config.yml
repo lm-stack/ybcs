@@ -453,7 +453,6 @@ collections:
           - { label: Logo (texte), name: logoText, widget: string }
           - { label: Logo (icône Phosphor), name: logoIcon, widget: string, hint: "phosphoricons.com → copier le nom (ex : ph-shield-check)" }
           - { label: Copyright, name: copyright, widget: string }
-          - { label: Webhook Token, name: webhookToken, widget: string, required: false, hint: "Token Bearer pour authentifier les requêtes vers le webhook n8n" }
 
       - name: coordonnees
         label: Coordonnées
